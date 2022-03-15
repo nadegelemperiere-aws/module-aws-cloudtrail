@@ -9,7 +9,6 @@
 # components required
 # Bash script to tests in a container
 # -------------------------------------------------------
-# Nadège LEMPERIERE, @13 january 2022
 # Latest revision: 11 march 2022
 # -------------------------------------------------------
 
