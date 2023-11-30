@@ -1,7 +1,5 @@
 # -------------------------------------------------------
-# TECHNOGIX
-# -------------------------------------------------------
-# Copyright (c) [2021] Technogix.io
+# Copyright (c) [2021] Nadege Lemperiere
 # All rights reserved
 # -------------------------------------------------------
 # Simple deployment for subnet testing
@@ -26,14 +24,25 @@ resource "aws_s3_bucket_policy" "bucket" {
 	bucket = aws_s3_bucket.bucket.id
   	policy = jsonencode({
     	Version = "2012-10-17"
-		Statement =[
+		Statement = [
 			{
 				Sid 			= "AllowS3ModificationToRootAndGod"
 				Effect			= "Allow"
-				Principal		= "*"
+				Principal 	    = {
+					"AWS" 		: ["arn:aws:iam::${var.account}:root", "arn:aws:iam::${var.account}:user/${var.service_principal}"]
+				}
 				Action 			= "s3:*"
-				Resource 		= [ "${aws_s3_bucket.bucket.arn}", "${aws_s3_bucket.bucket.arn}/*"]
-       		}
+				Resource 		= [ aws_s3_bucket.bucket.arn, "${aws_s3_bucket.bucket.arn}/*"]
+       		},
+			{
+				Sid 			= "AllowS3ModificationToCloudtrail"
+				Effect			= "Allow"
+				Principal      = {
+					"Service": "cloudtrail.amazonaws.com"
+				}
+				Action 			= "s3:*"
+				Resource 		= [ aws_s3_bucket.bucket.arn, "${aws_s3_bucket.bucket.arn}/*"]
+       		},
 		]
 	})
 }

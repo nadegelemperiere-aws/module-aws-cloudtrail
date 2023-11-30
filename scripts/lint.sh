@@ -1,8 +1,6 @@
 #!/bin/bash
 # -------------------------------------------------------
-# TECHNOGIX
-# -------------------------------------------------------
-# Copyright (c) [2022] Technogix SARL
+# Copyright (c) [2022] Nadege Lemperiere
 # All rights reserved
 # -------------------------------------------------------
 # Module to deploy an aws permission set with all the secure
@@ -10,7 +8,7 @@
 # Bash script to launch module linting
 # -------------------------------------------------------
 # Nadège LEMPERIERE, @13 january 2022
-# Latest revision: 13 january 2022
+# Latest revision: 20 november 2023
 # -------------------------------------------------------
 
 # Retrieve absolute path to this script
